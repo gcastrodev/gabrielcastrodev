@@ -1,0 +1,356 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Light Mode Base (for content sections) */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Indigo/Violet Primary */
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Cyan Secondary */
+    --secondary: 185 95% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted surfaces - Light gray */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    /* Accent */
+    --accent: 239 84% 67%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 239 84% 67%;
+
+    --radius: 0.75rem;
+
+    /* Dark section colors */
+    --dark-bg: 222 47% 6%;
+    --dark-card: 222 47% 9%;
+    --dark-border: 222 30% 18%;
+    --dark-muted: 222 47% 14%;
+    --dark-foreground: 210 40% 98%;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 239 84% 67%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 239 84% 67%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sora', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Dark section wrapper */
+  .section-dark {
+    background: hsl(var(--dark-bg));
+    color: hsl(var(--dark-foreground));
+  }
+
+  .section-dark .text-foreground {
+    color: hsl(var(--dark-foreground));
+  }
+
+  .section-dark .text-muted-foreground {
+    color: hsl(215 20% 65%);
+  }
+
+  .section-dark .bg-muted {
+    background: hsl(var(--dark-muted));
+  }
+
+  .section-dark .bg-card {
+    background: hsl(var(--dark-card));
+  }
+
+  .section-dark .border-border {
+    border-color: hsl(var(--dark-border));
+  }
+
+  /* Light section wrapper */
+  .section-light {
+    background: hsl(0 0% 100%);
+    color: hsl(222 47% 11%);
+  }
+
+  .section-ice {
+    background: hsl(220 14% 97%);
+    color: hsl(222 47% 11%);
+  }
+
+  /* Glass card for dark sections */
+  .glass-card-dark {
+    background: hsl(var(--dark-card) / 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--dark-border));
+    @apply rounded-2xl p-6 transition-all duration-500;
+  }
+
+  .glass-card-dark:hover {
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: 0 0 40px -10px hsl(var(--primary) / 0.3);
+  }
+
+  /* Card for light sections */
+  .light-card {
+    @apply bg-white rounded-2xl p-8 transition-all duration-300;
+    box-shadow: 0 4px 20px -4px hsl(220 9% 46% / 0.1);
+    border: 1px solid hsl(220 13% 91%);
+  }
+
+  .light-card:hover {
+    box-shadow: 0 20px 40px -12px hsl(var(--primary) / 0.15);
+    border-color: hsl(var(--primary) / 0.3);
+    transform: translateY(-4px);
+  }
+
+  /* Bento card for light sections */
+  .bento-card-light {
+    @apply bg-white rounded-2xl p-8 transition-all duration-300;
+    box-shadow: 0 2px 16px -4px hsl(220 9% 46% / 0.08);
+    border: 1px solid hsl(220 13% 91%);
+  }
+
+  .bento-card-light:hover {
+    box-shadow: 0 16px 32px -8px hsl(var(--primary) / 0.12);
+    border-color: hsl(var(--primary) / 0.25);
+    transform: translateY(-2px);
+  }
+
+  /* Stats card for light sections */
+  .stats-card-light {
+    @apply bg-white rounded-2xl;
+    box-shadow: 0 4px 24px -4px hsl(220 9% 46% / 0.1);
+    border: 1px solid hsl(220 13% 91%);
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+  }
+
+  /* Status indicator */
+  .status-dot {
+    @apply w-2.5 h-2.5 rounded-full bg-emerald-500;
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Section container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 font-semibold px-8 py-4 rounded-xl transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(239 84% 55%));
+    color: white;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px -15px hsl(var(--primary) / 0.6);
+  }
+
+  .btn-outline-dark {
+    @apply inline-flex items-center justify-center gap-2 border-2 font-semibold px-8 py-4 rounded-xl transition-all duration-300;
+    border-color: hsl(var(--dark-border));
+    color: hsl(var(--dark-foreground));
+  }
+
+  .btn-outline-dark:hover {
+    background: hsl(var(--primary) / 0.1);
+    border-color: hsl(var(--primary));
+  }
+
+  /* Stats card */
+  .stat-card {
+    @apply text-center py-8 px-6;
+  }
+
+  .stat-number {
+    @apply text-4xl md:text-5xl font-light text-gradient mb-2;
+    font-family: 'Sora', system-ui, sans-serif;
+  }
+
+  .stat-label {
+    @apply text-muted-foreground text-sm uppercase tracking-wider font-medium;
+  }
+
+  /* Social link light */
+  .social-link-light {
+    @apply flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300;
+    background: hsl(220 14% 96%);
+    color: hsl(222 47% 11%);
+    border: 1px solid hsl(220 13% 91%);
+  }
+
+  .social-link-light:hover {
+    background: hsl(var(--primary));
+    color: white;
+    border-color: hsl(var(--primary));
+    transform: translateY(-2px);
+  }
+
+  /* Social link dark */
+  .social-link-dark {
+    @apply flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300;
+    background: hsl(var(--dark-muted));
+    color: hsl(var(--dark-foreground));
+    border: 1px solid hsl(var(--dark-border));
+  }
+
+  .social-link-dark:hover {
+    background: hsl(var(--primary));
+    color: white;
+    border-color: hsl(var(--primary));
+    transform: translateY(-2px);
+  }
+
+  /* Project card light */
+  .project-card-light {
+    @apply relative overflow-hidden rounded-2xl bg-white transition-all duration-500;
+    box-shadow: 0 4px 24px -4px hsl(220 9% 46% / 0.1);
+    border: 1px solid hsl(220 13% 91%);
+  }
+
+  .project-card-light:hover {
+    box-shadow: 0 24px 48px -12px hsl(var(--primary) / 0.2);
+    border-color: hsl(var(--primary) / 0.3);
+    transform: translateY(-8px);
+  }
+
+  /* Tech badge light */
+  .tech-badge-light {
+    @apply px-3 py-1.5 rounded-lg text-xs font-medium;
+    background: hsl(var(--primary) / 0.08);
+    color: hsl(var(--primary));
+    border: 1px solid hsl(var(--primary) / 0.15);
+  }
+
+  /* Testimonial card light */
+  .testimonial-card-light {
+    @apply bg-white rounded-2xl p-8 md:p-12 text-center;
+    box-shadow: 0 4px 32px -8px hsl(220 9% 46% / 0.12);
+    border: 1px solid hsl(220 13% 91%);
+  }
+
+  /* FAQ accordion light */
+  .faq-item-light {
+    @apply bg-white rounded-2xl px-6 transition-all duration-300;
+    box-shadow: 0 2px 12px -4px hsl(220 9% 46% / 0.06);
+    border: 1px solid hsl(220 13% 91%);
+  }
+
+  .faq-item-light[data-state="open"] {
+    border-color: hsl(var(--primary) / 0.3);
+    box-shadow: 0 8px 24px -8px hsl(var(--primary) / 0.1);
+  }
+}
+
+@layer utilities {
+  /* Gradient backgrounds for dark hero */
+  .bg-gradient-hero-dark {
+    background: 
+      radial-gradient(ellipse 100% 80% at 50% -30%, hsl(var(--primary) / 0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 100% 50%, hsl(var(--secondary) / 0.08) 0%, transparent 50%),
+      hsl(var(--dark-bg));
+  }
+
+  /* Grid pattern for dark sections */
+  .bg-grid-pattern-dark {
+    background-image: 
+      linear-gradient(to right, hsl(var(--dark-border) / 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--dark-border) / 0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Subtle gradient for light sections */
+  .bg-gradient-light-subtle {
+    background: 
+      radial-gradient(ellipse 80% 60% at 50% 0%, hsl(var(--primary) / 0.03) 0%, transparent 50%),
+      hsl(0 0% 100%);
+  }
+
+  /* Animation delays */
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+
+  /* Pulse glow */
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 0 0 hsl(160 84% 50% / 0.4);
+    }
+    50% { 
+      box-shadow: 0 0 0 8px hsl(160 84% 50% / 0);
+    }
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Glow pulse */
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  /* Light divider */
+  .divider-light {
+    border-color: hsl(220 13% 91%);
+  }
+}
